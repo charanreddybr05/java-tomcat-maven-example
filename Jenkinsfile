@@ -56,7 +56,8 @@ pipeline {
         stage('Deploy Kubernetes') {
             agent any
         steps {
-          
+        sh 'kubectl create -f tomcat-rc.yaml'
+        sh 'kubectl create -f tomcat-svc.yaml'
         }
   }
 }
