@@ -54,34 +54,10 @@ pipeline {
         }
         }
         stage('Deploy Kubernetes') {
-            agent {
-            kubernetes {
-              label 'mypod'
-              defaultContainer 'jnlp'
-              yaml """
-                apiVersion: v1
-                kind: Pod
-                metadata:
-                labels:
-                some-label: some-label-value
-                spec:
-                containers:
-                  - name: maven
-                    image: maven:alpine
-                    command:
-                    - cat
-                      tty: true
-                      - name: busybox
-                        image: busybox
-                        command:
-                    - cat
-                      tty: true
-                   """
-             }
-           steps {
-             sh "echo Hello"
-           }
+            agent any
+        steps {
+          
+        }
   }
-	}
-  }
+}
 }
