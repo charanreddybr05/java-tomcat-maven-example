@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    k8s-app: tomcat
+  name: tomcat
+spec:
+  replicas: 4
+  selector:
+    k8s-app: tomcat
+  template:
+    metadata:
+      labels:
+        k8s-app: tomcat
+    spec:
+      containers:
+      - image: tomcat 
+        name: tomcat
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8080
+            protocol: TCP
