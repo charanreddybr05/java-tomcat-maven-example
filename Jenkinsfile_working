@@ -29,6 +29,33 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+        //stage('Test') {
+        //    agent {
+        //    docker {
+        //        image 'maven:3-alpine'
+        //        args '-v /root/.m2:/root/.m2'
+        //        }
+        //    }
+        //    steps {
+        //        sh 'mvn test'
+        //    }
+        //    post {
+        //        always {
+        //            junit 'target/surefire-reports/*.xml'
+        //        }
+        //    }
+        //}
+        //stage('Deliver') { 
+        //    agent {
+        //    docker {
+        //        image 'maven:3-alpine'
+        //        args '-v /root/.m2:/root/.m2'
+        //        }
+        //    }
+        //    steps {
+        //        sh './jenkins/scripts/deliver.sh' 
+        //    }
+        //}
         stage('Building image') {
             agent any
             steps {
@@ -53,32 +80,5 @@ pipeline {
       }
         }
         }
-        stage('Deploy Kubernetes') {
-            agent {
-            kubernetes {
-              label 'mypod'
-              defaultContainer 'jnlp'
-              yaml """
-                apiVersion: v1
-                kind: Pod
-                metadata:
-                labels:
-                some-label: some-label-value
-                spec:
-                containers:
-                  - name: maven
-                    image: maven:alpine
-                    command:
-                    - cat
-                      tty: true
-                      - name: busybox
-                        image: busybox
-                        command:
-                    - cat
-                      tty: true
-                   """
-             }
-  }
-	}
   }
 }
