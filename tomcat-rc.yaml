@@ -14,7 +14,7 @@ spec:
         k8s-app: tomcat
     spec:
       containers:
-      - image: tomcat 
+      - image: charanreddybr05/shopizer:6
         name: tomcat
         imagePullPolicy: IfNotPresent
         ports:
