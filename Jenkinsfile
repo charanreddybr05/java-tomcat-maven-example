@@ -58,6 +58,8 @@ pipeline {
         steps {
         sh 'kubectl create -f tomcat-rc.yaml --VERSION=${BUILD_NUMBER}'
         sh 'kubectl create -f tomcat-svc.yaml'
+//        sh 'ssh root@server kubectl create -f tomcat-rc.yaml --VERSION=${BUILD_NUMBER}'
+//        sh 'ssh root@server kubectl create -f tomcat-svc.yaml'
         }
   }
 }
