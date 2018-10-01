@@ -78,6 +78,9 @@ pipeline {
                       tty: true
                    """
              }
+           steps {
+             sh "echo Hello"
+           }
   }
 	}
   }
